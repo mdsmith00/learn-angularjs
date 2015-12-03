@@ -17,13 +17,27 @@ weatherApp.config(function ($routeProvider) {
         });
 });
 
-// CONTROLLERS
-weatherApp.controller('homeController', ['$scope', function ($scope) {
+// SERVICES
+weatherApp.service('forcastService', function () {
     "use strict";
 
+    // Default to New York
+    this.city = 'New York, NY';
+});
+
+// CONTROLLERS
+weatherApp.controller('homeController', ['$scope', 'forcastService', function ($scope, forcastService) {
+    "use strict";
+
+    $scope.city = forcastService.city;
+
+    $scope.$watch('city', function () {
+        forcastService.city = $scope.city;
+    });
 }]);
 
-weatherApp.controller('forcastController', ['$scope', function ($scope) {
+weatherApp.controller('forcastController', ['$scope', 'forcastService', function ($scope, forcastService) {
     "use strict";
 
+    $scope.city = forcastService.city;
 }]);
