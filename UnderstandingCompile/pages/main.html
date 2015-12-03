@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<label>Search</label>
+<input type="text" value="Doe"/>
+
+<h3>Search Results</h3>
+<div class="list-group">
+    <!-- use person-name attribute to pass the scope value to the directive -->
+    <search-result person-object="person" formatted-address-function="formattedAddress(aperson)" ng-repeat="person in people"></search-result>
+</div>
