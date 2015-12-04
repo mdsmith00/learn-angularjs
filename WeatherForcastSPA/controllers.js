@@ -1,4 +1,4 @@
-weatherApp.controller('homeController', ['$scope', 'forcastService', function ($scope, forcastService) {
+weatherApp.controller('homeController', ['$scope', 'forcastService', '$location', function ($scope, forcastService, $location) {
     "use strict";
 
     $scope.city = forcastService.city;
@@ -6,6 +6,11 @@ weatherApp.controller('homeController', ['$scope', 'forcastService', function ($
     $scope.$watch('city', function () {
         forcastService.city = $scope.city;
     });
+
+    $scope.submit = function () {
+        $location.path("/forcast");
+    };
+
 }]);
 
 weatherApp.controller('forcastController', ['$scope', 'forcastService', '$resource', '$routeParams', function ($scope, forcastService, $resource, $routeParams) {
